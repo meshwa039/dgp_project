@@ -1,0 +1,66 @@
+{% load static %}
+{% if request.session.name == None %}
+<script type="text/javascript">window.location.href="login";</script>
+
+{% endif %}
+<div class="navbar-wrapper">
+    <div class="navbar-logo">
+    <a class="mobile-menu" id="mobile-collapse" href="#!">
+    <i class="fa fa-sort-desc"></i>
+    </a>
+    <a href="/adminapp/">
+    <img class="img-fluid" src="{% static 'assets/images/logo.png' %}" alt="Theme-Logo" style="
+    height: 56px;
+    width: 215px;
+    margin-left: -20px;
+" />
+    </a>
+    <a class="mobile-options">
+    <i class="feather icon-more-horizontal"></i>
+    </a>
+    </div>
+    <div class="navbar-container">
+    <ul class="nav-left">
+    <li class="header-search">
+    <div class="main-search morphsearch-search">
+    <div class="input-group">
+    <span class="input-group-addon search-close"><i class="feather icon-x"></i></span>
+    <input type="text" class="form-control">
+    <span class="input-group-addon search-btn"></span>
+    </div>
+    </div>
+    </li>
+    <li>
+    <a href="#!" onclick="javascript:toggleFullScreen()">
+    
+    </a>
+    </li>
+    </ul>
+    <ul class="nav-right">
+   
+    <li class="user-profile header-notification">
+    <div class="dropdown-primary dropdown">
+    <div class="dropdown-toggle" data-toggle="dropdown">
+    <img src="{% static 'assets/images/' %}{{request.session.img}}" class="img-radius" alt="User-Profile-Image">
+    <span>{{request.session.name}}</span>
+    
+    </div>
+    <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+
+    <li>
+    <a href="#" style="
+    font-size: 12px;
+">Last Seen : {{request.session.time}}</a>
+    </li>
+    
+    <li>
+    <a href="/adminapp/logout">
+    <i class="fa fa-sign-out"></i> Logout
+    </a>
+    </li>
+    </ul>
+    </div>
+    </li>
+    </ul>
+    </div>
+    </div>

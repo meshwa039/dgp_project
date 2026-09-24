@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+{% load static %}
+{% include 'uhead.html' %}
+
+<body>
+	<!-- preloader Start -->
+
+	<!-- Top Scroll End -->
+	<!-- Top Header Wrapper Start -->
+	{% include 'uheader.html' %}
+	<!-- Top Header Wrapper End -->
+	<!-- Header Wrapper Start -->
+	
+	<!-- Header Wrapper End -->
+	<!-- map Wrapper Start -->
+	{% include 'ubanner.html' %}
+	<!-- map Wrapper End -->
+<!--start-->
+
+<div class="jp_best_deal_main_wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="jp_best_deal_heading_wrapper">
+					<div class="jp_best_deal_heading">
+						<h4>Offering the best Services</h4>
+					</div>
+				</div>
+			</div>
+			{% for row in cat_data %}
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<div class="jp_best_deal_main_cont_wrapper">
+					<div class="jp_best_deal_icon_sec"> <img src="/media/{{row.2}}" style="width:70px;height:70px;margin-left:-25px ;">
+					</div>
+					<div class="jp_best_deal_cont_sec">
+						<h4><a href="#">{{row.1}}</a></h4>
+						<p style="text-align: justify;">User can <b>{{row.1}}</b>, Update it , Download Certificate digitally , Government also verify Certificate and also Download the receipt .</p>
+					</div>
+					<a href="usignin" style="float: right;
+					margin-top: 15px;
+					width: 110px;
+					height: 30px;
+					line-height: 30px;
+					text-align: center;
+					color: #23c0e9;
+					background: transparent;
+					font-size: 12px;
+					font-weight: bold;
+					border: 1px solid #23c0e9;
+					-webkit-border-radius: 8px;
+					-moz-border-radius: 8px;
+					border-radius: 8px;
+					-webkit-transition: all 0.5s;
+					-o-transition: all 0.5s;
+					-ms-transition: all 0.5s;
+					-moz-transition: all 0.5s;
+					transition: all 0.5s;">Apply Now</a>
+					
+				</div>
+				
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+
+
+<!--end-->
+	<!-- jp footer Wrapper End -->
+	{% include 'ufooter.html' %}
+	<!--main js file start-->
+	{% include 'uscript.html' %}
+	<!--main js file end-->
+</body>
+
+</html>

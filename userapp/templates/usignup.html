@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+{% load static %}
+{% include 'uhead.html' %}
+
+<body>
+	<!-- preloader Start -->
+    
+	<!-- Top Scroll End -->
+	<!-- Top Header Wrapper Start -->
+	{% include 'uheader.html' %}
+	<!-- Top Header Wrapper End -->
+	<!-- Header Wrapper Start -->
+	
+	<!-- Header Wrapper End -->
+	<!-- map Wrapper Start -->
+	{% include 'ubanner.html' %}
+	<!-- map Wrapper End -->
+	<!--start-->
+
+
+    <div class="register_section">
+        <!-- register_form_wrapper -->
+        <div class="register_tab_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div role="tabpanel">
+
+                            <!-- Nav tabs -->
+                            <ul id="tabOne" class="nav register-tabs">
+                                <li class="active"><a href="#contentOne-1" data-toggle="tab">Create Your Account<br>
+                                        <span>i am looking for a Join Us</span></a>
+                                </li>
+                                
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active register_left_form" id="contentOne-1">
+                                    
+                                    <div class="row">
+                                        <form method="POST" enctype="multipart/form-data" data-toggle="validator">
+											{% csrf_token %}
+                                            <!--Form Group-->
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Name</label>
+												<input type="text" class="form-control" pattern="[A-Za-z\s]+" title="Please Enter Valid Name."  required name="u_name" required="" id="email2" placeholder="Enter Full Name*">
+													
+											</div>
+                                            <!--Form Group-->
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<label for="">Contact</label>
+												
+														<input type="text" maxlength="10" pattern="[0-9]{10}" title="Ex.9876543210"  required class="form-control" name="u_contact" required="" id="password2" placeholder="Contact *">
+													
+											</div>
+                                            <!--Form Group-->
+											<div class="form-group col-md-6 col-sm-6 col-xs-6">
+												<label for="">Aadhar Number</label>
+												
+														<input type="text" pattern="[0-9]{12}" maxlength="12" class="form-control" name="u_aadharnumber" required="" id="password2" placeholder="Adhar Number *">
+												</div>
+                                            <!--Form Group-->
+
+											<div class="form-group col-md-6 col-sm-6 col-xs-6">
+												<label for="">Password</label>
+												
+												<input type="password" id="myInput"  class="form-control" name="u_password" required  placeholder="Password *">
+												<label class="control control--checkbox"><input type="checkbox" id="myInput" onclick="myFunction()"> Show Password </label>
+												</div>
+
+                                                <div class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
+                                                    <label for="aadharInput">Aadhar Card</label>
+                                                    <input type="file" id="aadharInput" name="u_idproof" accept="image/png, image/jpg, image/jpeg, application/pdf" 
+                                                           class="form-control" required onchange="validateAndPreview(this, 'aadharPreview', 'aadharLink');" />
+                                                    <div class="img-upload">
+                                                        <img id="aadharPreview" src="{% static 'images/content/base.png' %}" alt="your image" style="max-width: 100%; height: auto;" />
+                                                        <a id="aadharLink" href="#" target="_blank" style="display: none;">View File</a>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
+                                                    <label for="imageInput">Upload Image</label>
+                                                    <input type="file" id="imageInput" name="u_img" accept="image/png, image/jpg, image/jpeg" 
+                                                           class="form-control" required onchange="validateAndPreview(this, 'imagePreview');" />
+                                                    <div class="img-upload">
+                                                        <img id="imagePreview" src="{% static 'images/content/base.png' %}" alt="your image" style="max-width: 100%; height: auto;" />
+                                                    </div>
+                                                </div>
+                                            
+                                            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="check-box text-center">
+                                                    <input type="checkbox" name="shipping-option" id="account-option_1" required>
+                                                    &ensp;
+                                                    <label for="account-option_1">I agreed to the <a href="uterms"
+                                                            class="check_box_anchr">Terms and Conditions</a> of Digital Gram Panchayat</label>
+                                                </div>
+                                            </div>
+                                            <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
+                                                <button type="submit"
+                                                    class="btn btn-primary login_btn">Signup</button>
+													{% if msg != "" %}
+													
+													<div class="alert alert-danger">
+														<strong>{{msg}}</strong>
+													</div>
+													{% endif %}
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="login_message">
+                                        <p>You have Already Account.? <a href="usignin"> Sign In </a></p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+	
+	<script type="text/javascript">
+		function myFunction() {
+		  var x = document.getElementById("myInput");
+		  if (x.type === "password") {
+			x.type = "text";
+		  } else {
+			x.type = "password";
+		  }
+		}
+
+		function validateAndPreview(input, imgId, pdfLinkId = null) {
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const reader = new FileReader();
+        const imgPreview = document.getElementById(imgId);
+        const pdfLink = pdfLinkId ? document.getElementById(pdfLinkId) : null;
+        const fileType = file.type;
+        
+        // Validation
+        if (input.id === 'imageInput') { // Image validation
+            const allowedImageTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+            if (!allowedImageTypes.includes(fileType)) {
+                alert('Only JPG, JPEG, and PNG images are allowed.');
+                input.value = ''; // Reset input
+                return;
+            }
+        } 
+        else if (input.id === 'aadharInput') { // Aadhar validation (Image + PDF)
+            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+            if (!allowedTypes.includes(fileType)) {
+                alert('Only JPG, JPEG, PNG images, and PDF files are allowed.');
+                input.value = ''; // Reset input
+                return;
+            }
+        }
+
+        reader.onload = function (e) {
+            if (fileType === 'application/pdf') {
+                if (pdfLink) {
+                    const pdfBlob = new Blob([file], { type: 'application/pdf' });
+                    const pdfURL = URL.createObjectURL(pdfBlob);
+
+                    pdfLink.style.display = "block";
+                    pdfLink.href = pdfURL;
+                    pdfLink.textContent = "View File";
+                    pdfLink.target = "_blank"; // Open in new tab
+                }
+                imgPreview.style.display = "none"; // Hide image preview
+            } else {
+                imgPreview.style.display = "block";
+                imgPreview.src = e.target.result;
+                if (pdfLink) pdfLink.style.display = "none"; // Hide PDF link
+            }
+        };
+        
+        reader.readAsDataURL(file);
+    }
+}
+
+	</script>
+
+
+	<!--end-->
+
+<!-- jp footer Wrapper End -->
+{% include 'ufooter.html' %}
+<!--main js file start-->
+{% include 'uscript.html' %}
+<!--main js file end-->
+</body>
+
+</html>

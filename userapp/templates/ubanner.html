@@ -1,0 +1,104 @@
+{% load static %}
+
+<div class="jp_tittle_main_wrapper">
+	<div class="jp_tittle_img_overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="jp_tittle_heading_wrapper">
+					<div class="jp_tittle_heading">
+						{% if request.path == "/ucontact" %}
+						<h2>Contact Us</h2>
+						{% elif request.path == "/uabout" %}
+						<h2>About Us</h2>
+						{% elif request.path == "/uservice" %}
+						<h2>Services</h2>
+						{% elif request.path == "/usignin" %}
+						<h2>User SignIn</h2>
+						{% elif request.path == "/usignup" %}
+						<h2>Join Us</h2>
+						{% elif request.path == "/uprofile" %}
+						<h2>Profile</h2>
+						{% elif request.path == "/ubirth" %}
+						<h2>Birth Certificate</h2>
+						{% elif request.path == "/udeath" %}
+						<h2>Death Certificate</h2>
+						{% elif request.path == "/ucaste" %}
+						<h2>Caste Certificate</h2>
+						{% elif request.path == "/uincome" %}
+						<h2>Income Certificate</h2>
+						{% elif request.path == "/ubirthview" %}
+						<h2>View Birth Certificate</h2>
+						{% elif request.path == "/udeathview" %}
+						<h2>View Death Certificate</h2>
+						{% elif request.path == "/ucasteview" %}
+						<h2>View Caste Certificate</h2>
+						{% elif request.path == "/utaxview" %}
+						<h2>View Tax Certificate</h2>
+						{% elif request.path == "/uincomeview" %}
+						<h2>View Income Certificate</h2>
+						{% elif request.path == "/ubirthedit" %}
+						<h2>View Birth Certificate</h2>
+						{% elif request.path == "/udeathedit" %}
+						<h2>View Death Certificate</h2>
+						{% elif request.path == "/ucasteedit" %}
+						<h2>View Caste Certificate</h2>
+						{% elif request.path == "/uincomeedit" %}
+						<h2>View Income Certificate</h2>
+						{% elif request.path == "/uforgotpassword" %}
+						<h2>Forgot Password</h2>
+						{% endif %}
+					</div>
+					<div class="jp_tittle_breadcrumb_main_wrapper">
+						<div class="jp_tittle_breadcrumb_wrapper">
+							<ul>
+								<li><a href="/">Home</a> <i class="fa fa-angle-right"></i></li>
+								{% if request.path == "/ucontact" %}
+								<li>Contact Us</li>
+								{% elif request.path == "/uabout" %}
+								<li>About Us</li>
+								{% elif request.path == "/uservice" %}
+								<li>Services</li>
+								{% elif request.path == "/usignin" %}
+								<li>Sign In</li>
+								{% elif request.path == "/usignup" %}
+								<li>Sign Up</li>
+								{% elif request.path == "/uprofile" %}
+								<li>User Profile</li>
+								{% elif request.path == "/ubirth" %}
+								<li>Certificate</li>
+								{% elif request.path == "/udeath" %}
+								<li>Certificate</li>
+								{% elif request.path == "/ucaste" %}
+								<li>Certificate</li>
+								{% elif request.path == "/uincome" %}
+								<li>Certificate</li>
+								{% elif request.path == "/ubirthview" %}
+								<li>View Certificate</li>
+								{% elif request.path == "/udeathview" %}
+								<li>View Certificate</li>
+								{% elif request.path == "/ucasteview" %}
+								<li>View Certificate</li>
+								{% elif request.path == "/uincomeview" %}
+								<li>View Certificate</li>
+								{% elif request.path == "/utaxview" %}
+								<li>View Certificate</li>
+								{% elif request.path == "/ubirthedit" %}
+								<li>View Certificate</li>
+								{% elif request.path == "/udeathedit" %}
+								<li>View Certificate</li>
+								{% elif request.path == "/ucasteedit" %}
+								<li>View Certificate</li>
+								{% elif request.path == "/uincomeedit" %}
+								<li>View Certificate</li>
+								{% elif request.path == "/uforgotpassword" %}
+								<li>User Forgot Password</li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+{% load static %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+{% include 'uhead.html' %}
+{% if request.session.userid == None %}
+<script type="text/javascript">window.location.href="usignin";</script>
+{% endif %}
+<script src="{% static 'js/pdf.js' %}"></script>
+<script src="{% static 'js/html2pdf.bundle.js' %}"></script>
+<body>
+    {% include 'uheader.html' %}
+       
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                color: #333;
+                margin: 0;
+                padding: 0;
+            }
+            .container1 {
+                width: 90%;
+                margin: 20px auto;
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border: black 1px solid;
+                margin-top: 12% !important;
+                margin-bottom: 3% !important;
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .header img {
+                height: 125px;
+                width: 120px;
+            }
+            .header h1 {
+                font-size: 2.5em;
+                margin: 10px 0;
+                color: #0073e6;
+            }
+            .header h3 {
+                font-size: 1.4em;
+                margin: 5px 0;
+            }
+            .header p {
+                font-size: 1.1em;
+                margin: 5px 0;
+            }
+            .certificate-content {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 13px;
+            }
+            .certificate-content td, .certificate-content th {
+                padding: 5px;
+                text-align: left;
+                vertical-align: middle;
+            }
+            .certificate-content tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .certificate-content th {
+                background-color: #4CAF50;
+                color: white;
+                text-align: center;
+            }
+            .certificate-content td b {
+                color: #0073e6;
+            }
+            .footer {
+                text-align: center;
+                margin-top: 40px;
+            }
+            .btn_1 {
+                background-color: #c32143;
+                border-radius: 5px;
+                color: white !important;
+                font-size: 1em;
+                padding: 10px 20px;
+                text-decoration: none;
+                text-transform: uppercase;
+                margin-top: 20px;
+            }
+            .btn_1:hover {
+                background-color: #a2132f;
+            }
+            @media print {
+                .footer {
+                    display: none; /* Hide the footer during print */
+                }
+
+                #printPageButton {
+                    display: none; /* Hide the "Back" button during print */
+                }
+
+                #download {
+                    display: none; /* Hide the "Print" button during print */
+                }
+            }
+
+        </style>
+   
+    
+    <div class="container1" id="invoice">
+        <div class="header">
+            <img src="static/images/satya1.jpg" alt="Government Emblem">
+            <h3>GOVERNMENT OF INDIA</h3>
+            <h3>DEPARTMENT OF HEALTH AND FAMILY WELFARE</h3>
+            <h1>BIRTH CERTIFICATE</h1>
+            <p>(Issued under section 12/17 of the Registration of Birth and Death Act, 1969)</p>
+            <p>This is to certify that the following information has been taken from the original record of birth which is in the register for village/city <b>{{b_data.0.4}}</b> of Taluka <b>{{b_data.0.3}}</b> of District <b>{{b_data.0.2}}</b> of India.</p>
+        </div>
+    
+        <table class="certificate-content">
+            <tr>
+                <th colspan="2">Certificate Details</th>
+                <th colspan="2">Applicant Details</th>
+            </tr>
+            <tr>
+                <td>User Id:</td>
+                <td><b>{{b_data.0.0}}</b></td>
+                <td>Applicant Name:</td>
+                <td><b>{{b_data.0.25}}</b></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><b>{{b_data.0.5}}</b></td>
+                <td>Gender:</td>
+                <td><b>{{b_data.0.6}}</b></td>
+            </tr>
+            <tr>
+                <td>Date of Birth:</td>
+                <td><b>{{b_data.0.7|date:'Y-m-d'}}</b></td>
+                <td>Place of Birth:</td>
+                <td><b>{{b_data.0.8}}</b></td>
+            </tr>
+            <tr>
+                <td>Name of Mother:</td>
+                <td><b>{{b_data.0.9}}</b></td>
+                <td>Name of Father:</td>
+                <td><b>{{b_data.0.10}}</b></td>
+            </tr>
+            <tr>
+                <td>Address at Time of Birth:</td>
+                <td colspan="3"><b>{{b_data.0.11}}</b></td>
+            </tr>
+            <tr>
+                <td>Permanent Address:</td>
+                <td colspan="3"><b>{{b_data.0.12}}</b></td>
+            </tr>
+            <tr>
+                <td>Date of Registration:</td>
+                <td><b>{{b_data.0.15|date:'Y-m-d'}}</b></td>
+                <td>Relation of Applicant:</td>
+                <td><b>{{b_data.0.13}}</b></td>
+            </tr>
+            <tr>
+                <td>Birth Time:</td>
+                <td><b>{{b_data.0.14}}</b></td>
+                <td>Remark (If any):</td>
+                <td>
+                    <b>
+                    {% if b_data.0.16 == None %} 
+                    --  
+                    {% else %}
+                    
+                    {{b_data.0.16}} 
+
+                    {% endif %}</b>
+                </td>
+            </tr>
+            <tr>
+                <td>Employee Name:</td>
+                <td><b>{{b_data.0.35}}</b></td>
+               
+            </tr>
+        </table>
+    
+        <div class="footer">
+            <img src="static/images/app.png" alt="Applicant Image" height="150px" width="150px" />
+        </div>
+    </div>
+    <div class="footer">
+       
+        <p><a href="ubirthview" class="btn_1" id="printPageButton">Back</a>&nbsp;
+        <input type="submit"  id="download" name="B_print" value="Print" class="btn_1" style="padding: 6px 15px;" /></p>
+    </div>
+   
+    {% include 'ufooter.html' %}
+</body>
+
+</html>

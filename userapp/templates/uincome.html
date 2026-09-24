@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+{% load static %}
+{% include 'uhead.html' %}
+
+{% if request.session.userid == None %}
+<script type="text/javascript">window.location.href="usignin";</script>
+{% endif %}
+
+<body>
+	<!-- preloader Start -->
+    
+	<!-- Top Scroll End -->
+	<!-- Top Header Wrapper Start -->
+	{% include 'uheader.html' %}
+	<!-- Top Header Wrapper End -->
+	<!-- Header Wrapper Start -->
+	
+	<!-- Header Wrapper End -->
+	<!-- map Wrapper Start -->
+	{% include 'ubanner.html' %}
+	<!-- map Wrapper End -->
+	<!--start-->
+
+
+    <div class="register_section">
+        <!-- register_form_wrapper -->
+        <div class="register_tab_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div role="tabpanel">
+
+                            <!-- Nav tabs -->
+                            <ul id="tabOne" class="nav register-tabs">
+                                <li class="active"><a href="#contentOne-1" data-toggle="tab">Add Income Certificate<br>
+                                       </a>
+                                </li>
+                                
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active register_left_form" id="contentOne-1">
+                                    
+                                    <div class="row">
+                                        <form method="POST" enctype="multipart/form-data" data-toggle="validator">
+											{% csrf_token %}
+                                            <!--Form Group-->
+
+                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+												
+												<label for="">District</label>
+                                                <select name="city_dname" id="city_dname" required>
+                                                    <option value="">--Select--</option>
+                                                    {% for vdata in d_data %}
+                                                    <option value="{{ vdata.0 }}">{{ vdata.0 }}</option>
+                                                    {% endfor %}
+                                                </select>
+													
+											</div>
+
+                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+												
+												<label for="">Taluka</label>
+                                                <select name="city_tname" id="city_tname" required>
+                                                    <option value="">--Select--</option>
+                                                </select>
+											</div>
+
+                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+												
+												<label for="">Village</label>
+                                                <select name="city_vname" id="city_vname" required >
+                                                    <option value="">--Select--</option>
+                                                </select>
+													
+											</div>
+
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Name Of Applicant</label>
+												<input type="text" class="form-control" name="i_name" pattern="[A-Za-z\s]+" title="Please Enter Valid Name."  required  id="email2" placeholder="Enter Name*">
+													
+											</div>
+                                            <!--Form Group-->
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<label for="">Gender</label>
+                                                <select name="i_gender" required>
+                                                  
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+												
+											</div>
+                                            <!--Form Group-->
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Address</label>
+												<textarea class="form-control" name="i_address" required  id="email2" placeholder="Address*"></textarea>
+													
+											</div>
+
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Permanent Address </label>
+												<textarea class="form-control" name="i_peraddress" required  id="email2" placeholder="Permanent Address*"></textarea>
+													
+											</div>
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<label for="">Amount</label>
+												<input type="number" class="form-control" name="i_amount" required pattern="[0-9]" title="Enter Valid Amount" id="password2" placeholder="Amount *">
+												</div>
+                                            <!--Form Group-->
+
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<label for="">Year</label>
+												<input type="number" id="myInput"  class="form-control" name="i_year" required min="1900" max="2100" placeholder="YYYY"   placeholder="Year *">
+											</div>
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
+                                                <label for="casteCertificate">PAN Card</label>
+                                                
+                                                <input type="file" id="casteCertificate" name="i_pancard" required class="form-control"
+                                                       accept="image/png, image/jpg, image/jpeg, application/pdf"
+                                                       onchange="validateAndPreview(this, 'casteCertificatePreview', 'casteCertificateLink');" />
+                                            
+                                                <div class="img-upload">
+                                                    <img id="casteCertificatePreview" src="{% static 'images/content/base.png' %}" alt="your image" />
+                                                    <a id="casteCertificateLink" href="#" target="_blank" style="display:none;">View File</a>
+                                                </div>
+                                            </div>
+                                          	
+                                          
+                                            <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
+                                                <button type="submit"
+                                                    class="btn btn-primary login_btn">Save Details</button>
+													
+                                            </div>
+                                        </form>
+                                    </div>
+                                   
+                                </div>
+                                
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('city_dname').addEventListener('change', function () {
+            const district = this.value;
+    
+            fetch(`get_taluka/${district}/`)
+                .then(response => response.json())
+                .then(data => {
+                    const talukaDropdown = document.getElementById('city_tname');
+                    talukaDropdown.innerHTML = '<option value="">--Select--</option>';
+                    data.forEach(item => {
+                        talukaDropdown.innerHTML += `<option value="${item.name}">${item.name}</option>`;
+                    });
+    
+                    // Clear villages
+                    document.getElementById('city_vname').innerHTML = '<option value="">--Select--</option>';
+                });
+        });
+    
+        document.getElementById('city_tname').addEventListener('change', function () {
+            const taluka = this.value;
+    
+            fetch(`get_village/${taluka}/`)
+                .then(response => response.json())
+                .then(data => {
+                    const villageDropdown = document.getElementById('city_vname');
+                    villageDropdown.innerHTML = '<option value="">--Select--</option>';
+                    data.forEach(item => {
+                        villageDropdown.innerHTML += `<option value="${item.name}">${item.name}</option>`;
+                    });
+                });
+        });
+
+        function validateAndPreview(input, imgId, linkId) {
+            if (input.files && input.files[0]) {
+                var file = input.files[0];
+                var reader = new FileReader();
+                var fileType = file.type;
+
+                if (fileType.includes("image")) {
+                    // If image, show preview
+                    reader.onload = function(e) {
+                        document.getElementById(imgId).src = e.target.result;
+                        document.getElementById(imgId).style.display = "block";
+                        document.getElementById(linkId).style.display = "none"; // Hide PDF link
+                    };
+                    reader.readAsDataURL(file);
+                } 
+                else if (fileType.includes("pdf")) {
+                    // If PDF, show link
+                    var fileURL = URL.createObjectURL(file);
+                    document.getElementById(linkId).href = fileURL;
+                    document.getElementById(linkId).style.display = "block";
+                    document.getElementById(imgId).style.display = "none"; // Hide image preview
+                } 
+                else {
+                    alert("Only JPG, JPEG, PNG, or PDF files are allowed.");
+                    input.value = ""; // Reset file input
+                }
+            }
+        }
+    </script>
+	
+
+
+	<!--end-->
+
+<!-- jp footer Wrapper End -->
+{% include 'ufooter.html' %}
+<!--main js file start-->
+{% include 'uscript.html' %}
+<!--main js file end-->
+</body>
+
+</html>

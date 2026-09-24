@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% include 'ehead.html' %}
+</head>
+<body>
+
+<div class="theme-loader">
+<div class="ball-scale">
+<div class="contain">
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="pcoded" class="pcoded">
+<div class="pcoded-overlay-box"></div>
+<div class="pcoded-container navbar-wrapper">
+<nav class="navbar header-navbar pcoded-header">
+    {% include 'eheader.html' %}
+</nav>
+
+<div id="sidebar" class="users p-chat-user showChat">
+<div class="had-container">
+<div class="card card_main p-fixed users-main">
+<div class="user-box">
+<div class="chat-inner-header">
+<div class="back_chatBox">
+<div class="right-icon-control">
+<input type="text" class="form-control  search-text" placeholder="Search Friend" id="search-friends">
+<div class="form-icon">
+<i class="icofont icofont-search"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="main-friend-list">
+<div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+<a class="media-left" href="#!">
+<img class="media-object img-radius img-radius" src="../files/assets/images/avatar-3.jpg" alt="Generic placeholder image ">
+<div class="live-status bg-success"></div>
+</a>
+<div class="media-body">
+<div class="f-13 chat-header">Josephin Doe</div>
+</div>
+</div>
+<div class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe" data-toggle="tooltip" data-placement="left" title="Lary Doe">
+<a class="media-left" href="#!">
+<img class="media-object img-radius" src="../files/assets/images/avatar-2.jpg" alt="Generic placeholder image">
+<div class="live-status bg-success"></div>
+</a>
+<div class="media-body">
+<div class="f-13 chat-header">Lary Doe</div>
+</div>
+</div>
+<div class="media userlist-box" data-id="3" data-status="online" data-username="Alice" data-toggle="tooltip" data-placement="left" title="Alice">
+<a class="media-left" href="#!">
+<img class="media-object img-radius" src="../files/assets/images/avatar-4.jpg" alt="Generic placeholder image">
+<div class="live-status bg-success"></div>
+</a>
+<div class="media-body">
+<div class="f-13 chat-header">Alice</div>
+</div>
+</div>
+<div class="media userlist-box" data-id="4" data-status="online" data-username="Alia" data-toggle="tooltip" data-placement="left" title="Alia">
+<a class="media-left" href="#!">
+<img class="media-object img-radius" src="../files/assets/images/avatar-3.jpg" alt="Generic placeholder image">
+<div class="live-status bg-success"></div>
+</a>
+<div class="media-body">
+<div class="f-13 chat-header">Alia</div>
+</div>
+</div>
+<div class="media userlist-box" data-id="5" data-status="online" data-username="Suzen" data-toggle="tooltip" data-placement="left" title="Suzen">
+<a class="media-left" href="#!">
+<img class="media-object img-radius" src="../files/assets/images/avatar-2.jpg" alt="Generic placeholder image">
+<div class="live-status bg-success"></div>
+</a>
+<div class="media-body">
+<div class="f-13 chat-header">Suzen</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="showChat_inner">
+<div class="media chat-inner-header">
+<a class="back_chatBox">
+<i class="feather icon-chevron-left"></i> Josephin Doe
+</a>
+</div>
+<div class="media chat-messages">
+<a class="media-left photo-table" href="#!">
+<img class="media-object img-radius img-radius m-t-5" src="../files/assets/images/avatar-3.jpg" alt="Generic placeholder image">
+</a>
+<div class="media-body chat-menu-content">
+<div class>
+<p class="chat-cont">I'm just looking around. Will you tell me something about yourself?</p>
+<p class="chat-time">8:20 a.m.</p>
+</div>
+</div>
+</div>
+<div class="media chat-messages">
+<div class="media-body chat-menu-reply">
+<div class>
+<p class="chat-cont">I'm just looking around. Will you tell me something about yourself?</p>
+<p class="chat-time">8:20 a.m.</p>
+</div>
+</div>
+<div class="media-right photo-table">
+<a href="#!">
+<img class="media-object img-radius img-radius m-t-5" src="../files/assets/images/avatar-4.jpg" alt="Generic placeholder image">
+</a>
+</div>
+</div>
+<div class="chat-reply-box p-b-20">
+<div class="right-icon-control">
+<input type="text" class="form-control search-text" placeholder="Share Your Thoughts">
+<div class="form-icon">
+<i class="feather icon-navigation"></i>
+</div>
+</div>
+</div>
+</div>
+
+<div class="pcoded-main-container">
+<div class="pcoded-wrapper">
+<nav class="pcoded-navbar">
+    {% include 'eleftbar.html' %}
+</nav>
+<div class="pcoded-content">
+<div class="pcoded-inner-content">
+<div class="main-body">
+<div class="page-wrapper">
+<div class="page-body">
+<div class="row">
+
+<!--start-->
+
+<div class="col-sm-12">
+
+    <div class="card">
+       
+        <div class="card-block">
+        <h4 class="sub-title">Edit Tax</h4>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">User Name</label>
+            <div class="col-sm-10">
+            <select name="u_id" class="form-control">
+                 
+            <option value="">select</option>
+            {% for udata in u_data %}
+           
+            {% if tx_data.0.2 == udata.0 %}
+            <option value="{{udata.0}}" selected>{{udata.1}}</option>
+            {% else %}
+            <option value="{{udata.0}}">{{udata.1}}</option>
+            {% endif %}
+            {% endfor %}
+            </select>
+            </div>
+            </div>
+    
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">District Name</label>
+            <div class="col-sm-10">
+            <select class="form-control" name="city_dname" id="city_dname">
+                
+                {% for vdata in d_data %}
+                
+                    {% if tx_data.0.3 == vdata.0 %}
+                    <option value="{{ vdata.0 }}" selected >{{ vdata.0 }}</option>
+                    {% else %}
+                    <option value="{{ vdata.0 }}">{{ vdata.0 }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Taluka Name</label>
+            <div class="col-sm-10">
+            <select class="form-control" name="city_tname" id="city_tname">
+                <option value="">--Select--</option>
+            </select>
+        </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Village Name</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="city_vname" id="city_vname" >
+                    <option value="">--Select--</option>
+                </select>
+        </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Tax Name</label>
+            <div class="col-sm-10">
+            <input type="text" name="tx_name" class="form-control" value="{{tx_data.0.6}}" placeholder="Enter Tax Name">
+        </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Gender</label>
+            <div class="col-sm-10">
+            <select name="tx_gender" class="form-control">
+            
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            {% if tx_data.0.7 == 'Female' %}
+            <option value="Male">Male</option>
+            <option value="Female" selected>Female</option>
+            {% else %}
+            <option value="Male" selected>Male</option>
+            <option value="Female">Female</option>
+            {% endif %}
+            
+            </select>
+        </div>
+        </div>
+    
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Address</label>
+            <div class="col-sm-10">
+            <textarea name="tx_address" class="form-control" placeholder="Enter Address" >{{tx_data.0.8}}</textarea>
+        </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Permanent Address</label>
+            <div class="col-sm-10">
+            <textarea name="tx_peraddress" class="form-control" placeholder="Enter Permanent Address" >{{tx_data.0.9}}</textarea>
+        </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Tax Home</label>
+            <div class="col-sm-10">
+            <input type="text" name="tx_home" class="form-control" value="{{tx_data.0.10}}" placeholder="Enter Tax Home">
+        </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Sqrt</label>
+            <div class="col-sm-10">
+            <input type="text" name="tx_sqrt" class="form-control" value="{{tx_data.0.11}}" placeholder="Enter Sqrt">
+        </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Amount</label>
+            <div class="col-sm-10">
+                <input type="text" name="tx_amount" class="form-control" value="{{tx_data.0.12}}" placeholder="Enter Amount"  id="tx_amount" oninput="calculateTotal()">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Year</label>
+            <div class="col-sm-10">
+                <select name="tx_year" class="form-control">
+                    {% if tx_data.0.13 == '2025' %}
+                        <option value="2025" selected >2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        {% elif tx_data.0.13 == '2024' %}
+                        <option value="2025">2025</option>
+                        <option value="2024" selected >2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        {% elif tx_data.0.13 == '2023' %}
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023" selected>2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        {% elif tx_data.0.13 == '2022' %}
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022" selected>2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        {% elif tx_data.0.13 == '2021' %}
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021" selected>2021</option>
+                        <option value="2020">2020</option>
+                        {% else %}
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        {% endif %}
+                    </select>
+        </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Outstanding</label>
+            <div class="col-sm-10">
+            <input type="text" name="tx_outstanding" class="form-control" value="{{tx_data.0.14}}" placeholder="Enter Outstanding" id="tx_outstanding" oninput="calculateTotal()">
+        </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Total</label>
+            <div class="col-sm-10">
+                <input type="text" name="tx_total" class="form-control" value="{{tx_data.0.15}}" placeholder="Enter Total" id="tx_total" readonly>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Issue Date</label>
+            <div class="col-sm-10">
+            <input type="date" name="tx_issue" class="form-control" value="{{tx_data.0.16|date:'Y-m-d'}}" placeholder="Enter Issue Date">
+        </div>
+        </div>
+     
+        <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Tax Status</label>
+        <div class="col-sm-10">
+        <select name="tx_status" class="form-control">
+            {% if tx_data.0.17 == 'Approve' %}
+            <option value="Approve" selected>Approve</option>
+            <option value="Reject">Reject</option>
+            {% else %}
+            <option value="Approve">Approve</option>
+            <option value="Reject" selected>Reject</option>
+            {% endif %}
+        </select>
+        </div>
+        </div>
+    
+        <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Employee Status</label>
+        <div class="col-sm-10">
+        <select name="e_status" class="form-control">
+            {% if tx_data.0.18 == 'Active' %}
+            <option value="Active" selected>Active</option>
+            <option value="Deactive">Deactive</option>
+            {% else %}
+            <option value="Active">Active</option>
+            <option value="Deactive" selected>Deactive</option>
+            {% endif %}
+        </select>
+        </div>
+        </div>
+
+      
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Remark Detail</label>
+            <div class="col-sm-10">
+            <textarea name="tx_remarkdetail" class="form-control" placeholder="Enter Remarkdetail" >{{tx_data.0.20}}</textarea>
+        </div>
+        </div>
+        
+        <div class="form-group row">
+            <label class="col-sm-2"></label>
+            <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary m-b-0">Change</button>
+            </div>
+            </div>
+        </form>
+       
+        </div>
+        
+        
+
+</div>
+
+<!--table-->
+<script>
+    function calculateTotal() {
+        // Get the values from Amount and Outstanding fields
+        var amount = parseFloat(document.getElementById('tx_amount').value) || 0;
+        var outstanding = parseFloat(document.getElementById('tx_outstanding').value) || 0;
+        
+        // Calculate the sum of Amount and Outstanding
+        var total = amount + outstanding;
+
+        // Set the calculated total in the Total field
+        document.getElementById('tx_total').value = total.toFixed(2); // Ensure it's formatted to 2 decimal places
+    }
+</script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const districtDropdown = document.getElementById("city_dname");
+        const talukaDropdown = document.getElementById("city_tname");
+        const villageDropdown = document.getElementById("city_vname");
+
+        // Set old values
+        const oldTaluka = "{{ tx_data.0.4 }}";  // Preselected Taluka
+        const oldVillage = "{{ tx_data.0.5 }}"; // Preselected Village
+
+        function fetchTaluka(district, selectedTaluka = "") {
+            if (!district) {
+                talukaDropdown.innerHTML = '<option value="">--Select--</option>';
+                villageDropdown.innerHTML = '<option value="">--Select--</option>';
+                return;
+            }
+
+            fetch(`get_taluka/${district}/`)
+                .then(response => response.json())
+                .then(data => {
+                    talukaDropdown.innerHTML = '<option value="">--Select--</option>';
+                    data.forEach(item => {
+                        const selected = item.name === selectedTaluka ? "selected" : "";
+                        talukaDropdown.innerHTML += `<option value="${item.name}" ${selected}>${item.name}</option>`;
+                    });
+
+                    // Fetch village only if a Taluka was previously selected
+                    if (selectedTaluka) {
+                        fetchVillage(selectedTaluka, oldVillage);
+                    }
+                });
+        }
+
+        function fetchVillage(taluka, selectedVillage = "") {
+            if (!taluka) {
+                villageDropdown.innerHTML = '<option value="">--Select--</option>';
+                return;
+            }
+
+            fetch(`get_village/${taluka}/`)
+                .then(response => response.json())
+                .then(data => {
+                    villageDropdown.innerHTML = '<option value="">--Select--</option>';
+                    data.forEach(item => {
+                        const selected = item.name === selectedVillage ? "selected" : "";
+                        villageDropdown.innerHTML += `<option value="${item.name}" ${selected}>${item.name}</option>`;
+                    });
+                });
+        }
+
+        // On District change, fetch Talukas or reset
+        districtDropdown.addEventListener("change", function () {
+            const district = this.value;
+            fetchTaluka(district);
+        });
+
+        // On Taluka change, fetch Villages
+        talukaDropdown.addEventListener("change", function () {
+            fetchVillage(this.value);
+        });
+
+        // On page load, prefill Taluka and Village
+        if (districtDropdown.value) {
+            fetchTaluka(districtDropdown.value, oldTaluka);
+        }
+    });
+</script>
+
+    
+
+
+
+
+
+<!--end-->
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+{% include 'escript.html' %}
+
+</body>
+
+</html>

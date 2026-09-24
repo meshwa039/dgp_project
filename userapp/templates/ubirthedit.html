@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+{% load static %}
+{% include 'uhead.html' %}
+
+{% if request.session.userid == None %}
+<script type="text/javascript">window.location.href="usignin";</script>
+{% endif %}
+
+<body>
+	<!-- preloader Start -->
+    
+	<!-- Top Scroll End -->
+	<!-- Top Header Wrapper Start -->
+	{% include 'uheader.html' %}
+	<!-- Top Header Wrapper End -->
+	<!-- Header Wrapper Start -->
+	
+	<!-- Header Wrapper End -->
+	<!-- map Wrapper Start -->
+	{% include 'ubanner.html' %}
+	<!-- map Wrapper End -->
+	<!--start-->
+
+
+    <div class="register_section">
+        <!-- register_form_wrapper -->
+        <div class="register_tab_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div role="tabpanel">
+
+                            <!-- Nav tabs -->
+                            <ul id="tabOne" class="nav register-tabs">
+                                <li class="active"><a href="#contentOne-1" data-toggle="tab">Change Birth Certificate<br>
+                                       </a>
+                                </li>
+                                
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active register_left_form" id="contentOne-1">
+                                    
+                                    <div class="row">
+                                        <form method="POST" enctype="multipart/form-data" data-toggle="validator">
+											{% csrf_token %}
+                                            <!--Form Group-->
+
+                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+												
+												<label for="">District</label>
+                                                <select name="city_dname" id="city_dname" required>
+                                                    <option value="">--Select--</option>
+                                                    {% for vdata in d_data %}
+                                                    
+                                                        {% if b_data.0.2 == vdata.0 %}
+                                                        <option value="{{ vdata.0 }}" selected >{{ vdata.0 }}</option>
+                                                        {% else %}
+                                                        <option value="{{ vdata.0 }}">{{ vdata.0 }}</option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </select>
+													
+											</div>
+
+                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+												
+												<label for="">Taluka</label>
+                                                <select name="city_tname" id="city_tname" required>
+                                                    <option value="">--Select--</option>
+                                                </select>
+													
+											</div>
+
+                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+												
+												<label for="">Village</label>
+                                                <select name="city_vname" id="city_vname" required>
+                                                    <option value="">--Select--</option>
+                                                </select>
+													
+											</div>
+
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Name Of Applicant</label>
+												<input type="text" class="form-control" value="{{b_data.0.5}}" name="b_name" pattern="[A-Za-z\s]+" title="Please Enter Valid Name."  required id="email2" placeholder="Enter Name*">
+													
+											</div>
+                                            <!--Form Group-->
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<label for="">Gender</label>
+                                                <select name="b_gender">
+                                                  
+                                                    {% if b_data.0.6 == 'Male' %}
+                                                    <option value="Male" selected >Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                    {% elif b_data.0.6 == 'Female' %}
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female" selected>Female</option>
+                                                    <option value="Other">Other</option>
+                                                    {% else %}
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other" selected >Other</option>
+                                                    {% endif %}
+                                                </select>
+												
+											</div>
+                                            <!--Form Group-->
+											<div class="form-group col-md-4 col-sm-4 col-xs-4">
+												<label for="">Date Of Birth</label>
+												<input type="date" class="form-control"  name="b_dob" value="{{b_data.0.7|date:'Y-m-d'}}" max="{{today}}" required id="password2" placeholder="Date Of Birth *">
+												</div>
+                                            <!--Form Group-->
+
+											<div class="form-group col-md-4 col-sm-4 col-xs-4">
+												<label for="">Birth Time</label>
+												<input type="time" id="myInput"  class="form-control" name="b_time" value="{{b_data.0.14}}" required  placeholder="Birth Time *">
+											</div>
+                                            <div class="form-group col-md-4 col-sm-4 col-xs-4" style="padding-bottom: 15px;">
+												<label for="">Date Of Registration</label>
+												<input type="date" class="form-control" name="b_regdate" value="{{b_data.0.15|date:'Y-m-d'}}" max="{{today}}"  required id="password2" placeholder="Date Of Registration *">
+                                                
+											</div>
+                                            
+                                             
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Name Of Father</label>
+												<input type="text" class="form-control" name="b_father"  value="{{b_data.0.10}}"  pattern="[A-Za-z\s]+" title="Please Enter Valid Name."  required id="email2" placeholder="Name Of Father*">
+													
+											</div>
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Name Of Mother</label>
+												<input type="text" class="form-control" name="b_mother" value="{{b_data.0.9}}"  pattern="[A-Za-z\s]+" title="Please Enter Valid Name."  required id="email2" placeholder="Name Of Mother*">
+													
+											</div>
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Address of parents at the time of Birth of child.</label>
+												<textarea class="form-control" name="b_address"  required id="email2" placeholder="Address*">{{b_data.0.11}}</textarea>
+													
+											</div>
+
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Permanent Address Of Parents</label>
+												<textarea class="form-control" name="b_peraddress"  required id="email2" placeholder="Permanent  Address *">{{b_data.0.12}}</textarea>
+													
+											</div>
+											
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
+                                                <label for="idProof">ID Proof</label>
+                                                <input type="file" id="idProof" name="b_idproof" class="form-control"
+                                                       accept="image/png, image/jpg, image/jpeg, application/pdf"
+                                                       onchange="validateAndPreview(this, 'idProofPreview', 'idProofLink');" />
+                                                <input type="hidden" name="old_img" class="form-control" value="{{ b_data.0.22 }}" />
+                                                <div class="img-upload">
+                                                    {% if b_data.0.22 and ".pdf" in b_data.0.22 %}
+                                                        <a id="idProofLink" href="/media/{{ b_data.0.22 }}" target="_blank">View File</a>
+                                                        <img id="idProofPreview" style="display:none;" />
+                                                    {% else %}
+                                                        <img id="idProofPreview" src="/media/{{ b_data.0.22 }}" alt="your image" />
+                                                        <a id="idProofLink" href="#" target="_blank" style="display:none;">View File</a>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
+                                                <label for="hospitalLetter">Hospital Letter</label>
+                                                <input type="file" id="hospitalLetter" name="b_hospitalletter" class="form-control"
+                                                       accept="image/png, image/jpg, image/jpeg, application/pdf"
+                                                       onchange="validateAndPreview(this, 'hospitalLetterPreview', 'hospitalLetterLink');" />
+                                                <input type="hidden" name="old_img1" class="form-control" value="{{ b_data.0.23 }}" />
+                                                <div class="img-upload">
+                                                    {% if b_data.0.23 and ".pdf" in b_data.0.23 %}
+                                                        <a id="hospitalLetterLink" href="/media/{{ b_data.0.23 }}" target="_blank">View File</a>
+                                                        <img id="hospitalLetterPreview" style="display:none;" />
+                                                    {% else %}
+                                                        <img id="hospitalLetterPreview" src="/media/{{ b_data.0.23 }}" alt="your image" />
+                                                        <a id="hospitalLetterLink" href="#" target="_blank" style="display:none;">View File</a>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Place Of Birth</label>
+												<input type="text" class="form-control" value="{{b_data.0.8}}"  name="b_place"  required id="email2" placeholder="Place Of Birth*">
+													
+											</div>
+
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Relation Of Applicant</label>
+                                                <select name="b_relation_name">
+                                                
+                                                    {% if b_data.0.13 == 'Self' %}
+                                                    <option value="Self" selected >Self</option>
+                                                    <option value="Father">Father</option>
+                                                    <option value="Mother">Mother</option>
+                                                    <option value="Brother">Brother</option>
+                                                    <option value="Wife">Wife</option>
+                                                    <option value="Daughter">Daughter</option>
+                                                    <option value="Other">Other</option>
+                                                    {% elif b_data.0.13 == 'Father' %}
+                                                    <option value="Self">Self</option>
+                                                    <option value="Father" selected >Father</option>
+                                                    <option value="Mother">Mother</option>
+                                                    <option value="Brother">Brother</option>
+                                                    <option value="Wife">Wife</option>
+                                                    <option value="Daughter">Daughter</option>
+                                                    <option value="Other">Other</option>
+                                                    {% elif b_data.0.13 == 'Mother' %}
+                                                    <option value="Self">Self</option>
+                                                    <option value="Father">Father</option>
+                                                    <option value="Mother" selected>Mother</option>
+                                                    <option value="Brother">Brother</option>
+                                                    <option value="Wife">Wife</option>
+                                                    <option value="Daughter">Daughter</option>
+                                                    <option value="Other">Other</option>
+                                                    {% elif b_data.0.13 == 'Brother' %}
+                                                    <option value="Self">Self</option>
+                                                    <option value="Father">Father</option>
+                                                    <option value="Mother">Mother</option>
+                                                    <option value="Brother" selected>Brother</option>
+                                                    <option value="Wife">Wife</option>
+                                                    <option value="Daughter">Daughter</option>
+                                                    <option value="Other">Other</option>
+                                                    {% elif b_data.0.13 == 'Wife' %}
+                                                    <option value="Self">Self</option>
+                                                    <option value="Father">Father</option>
+                                                    <option value="Mother">Mother</option>
+                                                    <option value="Brother">Brother</option>
+                                                    <option value="Wife" selected>Wife</option>
+                                                    <option value="Daughter">Daughter</option>
+                                                    <option value="Other">Other</option>
+                                                    {% elif b_data.0.13 == 'Daughter' %}
+                                                    <option value="Self">Self</option>
+                                                    <option value="Father">Father</option>
+                                                    <option value="Mother">Mother</option>
+                                                    <option value="Brother">Brother</option>
+                                                    <option value="Wife" >Wife</option>
+                                                    <option value="Daughter" selected>Daughter</option>
+                                                    <option value="Other">Other</option>
+                                                    {% else %}
+                                                    <option value="Self">Self</option>
+                                                    <option value="Father">Father</option>
+                                                    <option value="Mother">Mother</option>
+                                                    <option value="Brother">Brother</option>
+                                                    <option value="Wife">Wife</option>
+                                                    <option value="Daughter">Daughter</option>
+                                                    <option value="Other" selected>Other</option>
+                                                    {% endif %}
+                                                </select>
+													
+											</div>
+
+                                            
+                                          
+                                            <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
+                                                <button type="submit"
+                                                    class="btn btn-primary login_btn">Save Details</button>
+													
+                                            </div>
+                                        </form>
+                                    </div>
+                                   
+                                </div>
+                                
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const districtDropdown = document.getElementById("city_dname");
+            const talukaDropdown = document.getElementById("city_tname");
+            const villageDropdown = document.getElementById("city_vname");
+    
+            // Set old values
+            const oldTaluka = "{{ b_data.0.3 }}";  // Preselected Taluka
+            const oldVillage = "{{ b_data.0.4 }}"; // Preselected Village
+    
+            function fetchTaluka(district, selectedTaluka = "") {
+                if (!district) {
+                    talukaDropdown.innerHTML = '<option value="">--Select--</option>';
+                    villageDropdown.innerHTML = '<option value="">--Select--</option>';
+                    return;
+                }
+    
+                fetch(`get_taluka/${district}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        talukaDropdown.innerHTML = '<option value="">--Select--</option>';
+                        data.forEach(item => {
+                            const selected = item.name === selectedTaluka ? "selected" : "";
+                            talukaDropdown.innerHTML += `<option value="${item.name}" ${selected}>${item.name}</option>`;
+                        });
+    
+                        // Fetch village only if a Taluka was previously selected
+                        if (selectedTaluka) {
+                            fetchVillage(selectedTaluka, oldVillage);
+                        }
+                    });
+            }
+    
+            function fetchVillage(taluka, selectedVillage = "") {
+                if (!taluka) {
+                    villageDropdown.innerHTML = '<option value="">--Select--</option>';
+                    return;
+                }
+    
+                fetch(`get_village/${taluka}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        villageDropdown.innerHTML = '<option value="">--Select--</option>';
+                        data.forEach(item => {
+                            const selected = item.name === selectedVillage ? "selected" : "";
+                            villageDropdown.innerHTML += `<option value="${item.name}" ${selected}>${item.name}</option>`;
+                        });
+                    });
+            }
+    
+            // On District change, fetch Talukas or reset
+            districtDropdown.addEventListener("change", function () {
+                const district = this.value;
+                fetchTaluka(district);
+            });
+    
+            // On Taluka change, fetch Villages
+            talukaDropdown.addEventListener("change", function () {
+                fetchVillage(this.value);
+            });
+    
+            // On page load, prefill Taluka and Village
+            if (districtDropdown.value) {
+                fetchTaluka(districtDropdown.value, oldTaluka);
+            }
+        });
+
+        function validateAndPreview(input, imgId, pdfLinkId = null) {
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const reader = new FileReader();
+        const imgPreview = document.getElementById(imgId);
+        const pdfLink = pdfLinkId ? document.getElementById(pdfLinkId) : null;
+        const fileType = file.type;
+
+        // Validation
+        const allowedImageTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        const allowedPdfTypes = ['application/pdf'];
+
+        if (!allowedImageTypes.includes(fileType) && !allowedPdfTypes.includes(fileType)) {
+            alert('Only JPG, JPEG, PNG images, and PDF files are allowed.');
+            input.value = ''; // Reset input
+            return;
+        }
+
+        reader.onload = function (e) {
+            if (fileType === 'application/pdf') {
+                if (pdfLink) {
+                    const pdfBlob = new Blob([file], { type: 'application/pdf' });
+                    const pdfURL = URL.createObjectURL(pdfBlob);
+
+                    pdfLink.style.display = "block";
+                    pdfLink.href = pdfURL;
+                    pdfLink.textContent = "View File";
+                    pdfLink.target = "_blank"; // Open in new tab
+                }
+                imgPreview.style.display = "none"; // Hide image preview
+            } else {
+                imgPreview.style.display = "block";
+                imgPreview.src = e.target.result;
+                if (pdfLink) pdfLink.style.display = "none"; // Hide PDF link
+            }
+        };
+        
+        reader.readAsDataURL(file);
+    }
+}
+
+
+    </script>
+    
+	
+	
+
+
+	<!--end-->
+
+<!-- jp footer Wrapper End -->
+{% include 'ufooter.html' %}
+<!--main js file start-->
+{% include 'uscript.html' %}
+<!--main js file end-->
+</body>
+
+</html>

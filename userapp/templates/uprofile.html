@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+{% load static %}
+{% include 'uhead.html' %}
+
+{% if request.session.userid == None %}
+<script type="text/javascript">window.location.href="usignin";</script>
+{% endif %}
+
+<body>
+	<!-- preloader Start -->
+    
+	<!-- Top Scroll End -->
+	<!-- Top Header Wrapper Start -->
+	{% include 'uheader.html' %}
+	<!-- Top Header Wrapper End -->
+	<!-- Header Wrapper Start -->
+	
+	<!-- Header Wrapper End -->
+	<!-- map Wrapper Start -->
+	{% include 'ubanner.html' %}
+	<!-- map Wrapper End -->
+	<!--start-->
+
+
+    <div class="register_section">
+        <!-- register_form_wrapper -->
+        <div class="register_tab_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div role="tabpanel">
+
+                            <!-- Nav tabs -->
+                            <ul id="tabOne" class="nav register-tabs">
+                                <li class="active"><a href="#contentOne-1" data-toggle="tab">My Account<br>
+                                       </a>
+                                </li>
+                                
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active register_left_form" id="contentOne-1">
+                                    
+                                    <div class="row">
+                                        <form method="POST" enctype="multipart/form-data" data-toggle="validator">
+											{% csrf_token %}
+                                            <!--Form Group-->
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Name</label>
+												<input type="text" class="form-control" name="u_name" value="{{u_data.0.1}}" pattern="[A-Za-z\s]+" title="Please Enter Valid Name."  required  id="email2" placeholder="Enter Full Name*">
+													
+											</div>
+                                            <!--Form Group-->
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<label for="">Contact</label>
+												
+														<input type="text" class="form-control" maxlength="10" pattern="[0-9]{10}" title="Ex.9876543210"  required name="u_contact" value="{{u_data.0.4}}"  id="password2" placeholder="Contact *" readonly>
+													
+											</div>
+                                            <!--Form Group-->
+											<div class="form-group col-md-6 col-sm-6 col-xs-6">
+												<label for="">Aadhar Number</label>
+												
+														<input type="text" class="form-control" maxlength="12" pattern="[0-9]{12}" title="Ex.9876543210"  required name="u_aadharnumber" value="{{u_data.0.5}}"  id="password2" placeholder="Adhar Number *">
+												</div>
+                                            <!--Form Group-->
+
+											<div class="form-group col-md-6 col-sm-6 col-xs-6">
+												<label for="">Password</label>
+												
+												<input type="password" id="myInput"  class="form-control" name="u_password" value="{{u_data.0.6}}" required  placeholder="Password *">
+												<label class="control control--checkbox"><input type="checkbox" id="myInput" onclick="myFunction()"> Show Password </label>
+												</div>
+
+												<div class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
+													<label for="cv">Aadhar Card</label>
+													<input type='file' onchange="readURL(this, 'blah1', 'pdfLink');" name="u_idproof"
+														accept="image/png, image/jpg, image/jpeg, application/pdf" class="form-control" id="imageInput1" />
+													<input type="hidden" name="old_img1" class="form-control" value="{{u_data.0.3}}" />
+												
+													<div class="img-upload">
+														<!-- Image Preview -->
+														<img id="blah1" src="/media/{{u_data.0.3}}" alt="your image" style="display:none; max-width:180px; height:180px;" />
+														
+														<!-- PDF Hyperlink -->
+														<a id="pdfLink" href="/media/{{u_data.0.3}}" target="_blank" style="display:none;">View File</a>
+													</div>
+												</div>
+
+												<div class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
+													<label for="cv">Upload Image</label>
+													<input type='file' onchange="readURL(this, 'blah2');" class="form-control"
+														accept="image/png, image/jpg, image/jpeg" name="u_img" id="imageInput" />
+													<input type="hidden" name="old_img" class="form-control" value="{{u_data.0.2}}" />
+										
+													<div class="img-upload">
+														<img id="blah2" src="/media/{{u_data.0.2}}" alt="your image" />
+													</div>
+												</div>
+                                            
+                                          
+                                            <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
+                                                <button type="submit"
+                                                    class="btn btn-primary login_btn">Save Details</button>
+													
+                                            </div>
+                                        </form>
+                                    </div>
+                                   
+                                </div>
+                                
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+	
+	<script type="text/javascript">
+		function myFunction() {
+			var x = document.getElementById("myInput");
+			if (x.type === "password") {
+				x.type = "text";
+			} else {
+				x.type = "password";
+			}
+		}
+        
+
+		document.addEventListener("DOMContentLoaded", function () {
+    let oldFilePath = "{{ u_data.0.3 }}";  // Get file path from backend
+    let imgPreview = document.getElementById("blah1");
+    let pdfLink = document.getElementById("pdfLink"); // Get PDF link element
+
+    if (oldFilePath) {
+        let fileExtension = oldFilePath.split('.').pop().toLowerCase();
+        let filePath = "/media/" + oldFilePath;
+
+        fetch(filePath) // Check if file exists
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("File not found");
+                }
+
+                if (fileExtension === "pdf") {
+                    pdfLink.style.display = "block";
+                    pdfLink.href = filePath;
+                    pdfLink.textContent = "View File";
+                    imgPreview.style.display = "none"; // Hide image preview
+                } else {
+                    imgPreview.style.display = "block";
+                    imgPreview.src = filePath;
+                    pdfLink.style.display = "none"; // Hide PDF link
+                }
+            })
+            .catch(error => console.error("File not found:", error));
+		}
+});
+
+// Function to preview selected image or show PDF link
+function readURL(input, imgId, pdfLinkId) {
+    if (input.files && input.files[0]) {
+        var file = input.files[0];
+        var reader = new FileReader();
+        var imgPreview = document.getElementById(imgId);
+        var pdfLink = document.getElementById(pdfLinkId);
+
+        reader.onload = function (e) {
+            if (file.type === 'application/pdf') {
+                // Create a Blob URL for the PDF
+                var blob = new Blob([file], { type: "application/pdf" });
+                var pdfURL = URL.createObjectURL(blob);
+
+                pdfLink.style.display = "block";
+                pdfLink.href = pdfURL;
+                pdfLink.textContent = "View File";
+                pdfLink.target = "_blank"; // Open in new tab
+
+                imgPreview.style.display = "none"; // Hide image preview
+            } else {
+                imgPreview.style.display = "block";
+                imgPreview.src = e.target.result;
+                pdfLink.style.display = "none"; // Hide PDF link
+            }
+        };
+
+        reader.readAsDataURL(file);
+    }
+}
+
+		
+		
+		// Validate "Upload Image" (Only JPG, JPEG, PNG)
+		document.getElementById('imageInput').addEventListener('change', function (event) {
+			const file = event.target.files[0];
+			if (file) {
+				const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+				if (!allowedTypes.includes(file.type)) {
+					alert('Only JPG, JPEG, and PNG images are allowed.');
+					event.target.value = ''; // Reset file input
+				}
+			}
+		});
+	
+		// Validate "Aadhar Card" (Allow JPG, PNG, JPEG, PDF)
+		document.getElementById('imageInput1').addEventListener('change', function (event) {
+			const file = event.target.files[0];
+			if (file) {
+				const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+				if (!allowedTypes.includes(file.type)) {
+					alert('Only JPG, JPEG, PNG images, and PDF files are allowed.');
+					event.target.value = ''; // Reset file input
+					return;
+				}
+				readURL(event.target, 'blah1', 'pdfPreview'); // Call readURL function with PDF support
+			}
+		});
+	</script>
+	
+
+
+	<!--end-->
+
+<!-- jp footer Wrapper End -->
+{% include 'ufooter.html' %}
+<!--main js file start-->
+{% include 'uscript.html' %}
+<!--main js file end-->
+</body>
+
+</html>

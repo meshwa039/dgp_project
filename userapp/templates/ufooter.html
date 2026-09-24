@@ -1,0 +1,125 @@
+{% load static %}
+
+
+<div class="jp_main_footer_img_wrapper">
+	<div class="jp_newsletter_img_overlay_wrapper"></div>
+	
+	
+	<!-- jp footer Wrapper Start -->
+	<div class="jp_footer_main_wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="jp_footer_logo_wrapper">
+						<div class="jp_footer_logo">
+							<a href="#"><img src="{% static 'images/logo.png' %}" alt="footer_logo" style="height: 80px;border-radius: 5px;"/></a>
+						</div>
+					</div>
+				</div>
+				<div class="jp_footer_three_sec_main_wrapper">
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+						<div class="jp_footer_first_cont_wrapper">
+							<div class="jp_footer_first_cont">
+								<h2>Who We Are</h2>
+								<p style="text-align: justify;padding-right: 40px">This project’s goal is to develop a E Gram Panchayat website. This is an online application which can be access through internet from anywhere and at any time. The main objective of this website is to provide information of newly implemented schemes to villagers so that they can apply for those schemes.
+								</p>
+								
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+						<div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper2">
+							<div class="jp_footer_candidate">
+								<h2>Services</h2>
+								{% if request.session.userid == None %}
+								<ul>
+									<li><a href="uservice"><i class="fa fa-caret-right" aria-hidden="true"></i> Birth Certificate</a></li>
+									<li><a href="uservice"><i class="fa fa-caret-right" aria-hidden="true"></i> Death Certificate</a></li>
+									<li><a href="uservice"><i class="fa fa-caret-right" aria-hidden="true"></i> Caste Certificate</a></li>
+									<li><a href="uservice"><i class="fa fa-caret-right" aria-hidden="true"></i> Income Certificate</a></li>
+									<li><a href="uservice"><i class="fa fa-caret-right" aria-hidden="true"></i> Tax Certificate</a></li>
+									
+								</ul>
+								{% else %}
+								<ul>
+									<li><a href="ubirthview"><i class="fa fa-caret-right" aria-hidden="true"></i> Birth Certificate</a></li>
+									<li><a href="udeathview"><i class="fa fa-caret-right" aria-hidden="true"></i> Death Certificate</a></li>
+									<li><a href="ucasteview"><i class="fa fa-caret-right" aria-hidden="true"></i> Caste Certificate</a></li>
+									<li><a href="uincomeview"><i class="fa fa-caret-right" aria-hidden="true"></i> Income Certificate</a></li>
+									<li><a href="utaxview"><i class="fa fa-caret-right" aria-hidden="true"></i> Tax Certificate</a></li>
+												
+								</ul>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+						<div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper3">
+							<div class="jp_footer_candidate">
+								<h2>For User</h2>
+								{% if request.session.userid == None %}
+								<ul>
+									<li><a href="/"><i class="fa fa-caret-right" aria-hidden="true"></i> Home</a></li>
+									<li><a href="usignup"><i class="fa fa-caret-right" aria-hidden="true"></i> User Join Us </a></li>
+									<li><a href="usignin"><i class="fa fa-caret-right" aria-hidden="true"></i> User SignIn</a></li>
+									<li><a href="/employeeapp/elogin"><i class="fa fa-caret-right" aria-hidden="true"></i> Employee SignIn</a></li>
+									
+								</ul>
+								{% else %}
+
+								<ul>
+									<li><a href="/"><i class="fa fa-caret-right" aria-hidden="true"></i> Home</a></li>
+									<li><a href="uprofile"><i class="fa fa-caret-right" aria-hidden="true"></i> Profile </a></li>
+									<li><a href="usignout"><i class="fa fa-caret-right" aria-hidden="true"></i> Logout</a></li>
+									
+									
+								</ul>
+
+								{% endif %}
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+						<div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper4">
+							<div class="jp_footer_candidate">
+								<h2>Information</h2>
+								<ul>
+									<li><a href="uabout"><i class="fa fa-caret-right" aria-hidden="true"></i> About Us</a></li>
+									<li><a href="uterms"><i class="fa fa-caret-right" aria-hidden="true"></i> Terms & Conditions</a></li>
+								
+									<li><a href="ucontact"><i class="fa fa-caret-right" aria-hidden="true"></i> Contact Us</a></li>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="jp_bottom_footer_Wrapper">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+								<div class="jp_bottom_footer_left_cont">
+									<p>© 2024-25 Digital Gram Panchayat. All Rights Reserved.</p>
+								</div>
+								<div class="jp_bottom_top_scrollbar_wrapper">
+									<a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+								<div class="jp_bottom_footer_right_cont">
+									<ul>
+										<li><a href="https://www.facebook.com/login.php/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="https://x.com/login?&mx=2" target="_blank"><i class="fa fa-twitter"></i></a></li>
+										
+										<li><a href="https://in.linkedin.com/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+										
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

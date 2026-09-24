@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+{% load static %}
+{% include 'uhead.html' %}
+
+{% if request.session.userid == None %}
+<script type="text/javascript">window.location.href="usignin";</script>
+{% endif %}
+
+<body>
+	<!-- preloader Start -->
+    
+	<!-- Top Scroll End -->
+	<!-- Top Header Wrapper Start -->
+	{% include 'uheader.html' %}
+	<!-- Top Header Wrapper End -->
+	<!-- Header Wrapper Start -->
+	
+	<!-- Header Wrapper End -->
+	<!-- map Wrapper Start -->
+	{% include 'ubanner.html' %}
+	<!-- map Wrapper End -->
+	<!--start-->
+
+
+    <div class="register_section">
+        <!-- register_form_wrapper -->
+        <div class="register_tab_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div role="tabpanel">
+
+                            <!-- Nav tabs -->
+                            <ul id="tabOne" class="nav register-tabs">
+                                <li class="active"><a href="#contentOne-1" data-toggle="tab">Change Income Certificate<br>
+                                       </a>
+                                </li>
+                                
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active register_left_form" id="contentOne-1">
+                                    
+                                    <div class="row">
+                                        <form method="POST" enctype="multipart/form-data" data-toggle="validator">
+											{% csrf_token %}
+                                            <!--Form Group-->
+
+                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+												
+												<label for="">District</label>
+                                                <select name="city_dname" id="city_dname" required>
+                                                    <option value="">--Select--</option>
+                                                    {% for vdata in d_data %}
+                                                    
+                                                        {% if i_data.0.3 == vdata.0 %}
+                                                        <option value="{{ vdata.0 }}" selected >{{ vdata.0 }}</option>
+                                                        {% else %}
+                                                        <option value="{{ vdata.0 }}">{{ vdata.0 }}</option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </select>
+													
+											</div>
+
+                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+												
+												<label for="">Taluka</label>
+                                                <select name="city_tname" id="city_tname" required>
+                                                    <option value="">--Select--</option>
+                                                </select>
+											</div>
+
+                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+												
+												<label for="">Village</label>
+                                                <select name="city_vname" id="city_vname" required>
+                                                    <option value="">--Select--</option>
+                                                </select>
+													
+											</div>
+
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Name Of Applicant</label>
+												<input type="text" class="form-control" pattern="[A-Za-z\s]+" title="Please Enter Valid Name."  required name="i_name" value="{{i_data.0.6}}"  required="" id="email2" placeholder="Enter Name*">
+													
+											</div>
+                                            <!--Form Group-->
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<label for="">Gender</label>
+                                                <select name="i_gender">
+                                                  
+                                                    {% if i_data.0.7 == 'Male' %}
+                                                    <option value="Male" selected >Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                    {% elif i_data.0.7 == 'Female' %}
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female" selected>Female</option>
+                                                    <option value="Other">Other</option>
+                                                    {% else %}
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other" selected >Other</option>
+                                                    {% endif %}
+                                                </select>
+												
+											</div>
+                                            <!--Form Group-->
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Address</label>
+												<textarea class="form-control" name="i_address"  required id="email2" placeholder="Address*">{{i_data.0.8}}</textarea>
+													
+											</div>
+
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Permanent Address </label>
+												<textarea class="form-control" name="i_peraddress"  required id="email2" placeholder="Permanent Address*">{{i_data.0.9}}</textarea>
+													
+											</div>
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<label for="">Amount</label>
+												<input type="text" class="form-control" name="i_amount" value="{{i_data.0.10}}"  required="" id="password2" placeholder="Amount *">
+											</div>
+                                            <!--Form Group-->
+
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<label for="">Year</label>
+												<input type="year" id="myInput"  class="form-control" name="i_year" value="{{i_data.0.11}}"  required  placeholder="Year *">
+											</div>
+
+                                            <div class="form-group col-md-12 col-sm-12 col-xs-12 custom_input">
+                                                <label for="cv">PAN Card</label>
+                                                <input type="file" onchange="validateAndPreview(this, 'blah1', 'pdfLink1');" 
+                                                       name="i_pancard" accept="image/png, image/jpg, image/jpeg, application/pdf" 
+                                                       class="form-control" />
+                                            
+                                                <!-- Hidden Input for Old Data -->
+                                                <input type="hidden" name="old_img" class="form-control" value="{{ i_data.0.19 }}" />
+                                            
+                                                <!-- Image Preview -->
+                                                <div class="img-upload">
+                                                    {% if i_data.0.19 and not i_data.0.19|lower|slice:'-4:' == '.pdf' %}
+                                                        <img id="blah1" src="/media/{{ i_data.0.19 }}" alt="your image" style="max-width: 200px; display: block;" />
+                                                    {% else %}
+                                                        <img id="blah1" src="" alt="your image" style="max-width: 200px; display: none;" />
+                                                    {% endif %}
+                                                </div>
+                                            
+                                                <!-- PDF View Link (Initially Hidden) -->
+                                                {% if i_data.0.19 and i_data.0.19|lower|slice:'-4:' == '.pdf' %}
+                                                    <a id="pdfLink1" href="/media/{{ i_data.0.19 }}" target="_blank" style="display: block;">View File</a>
+                                                {% else %}
+                                                    <a id="pdfLink1" href="#" target="_blank" style="display: none;">View File</a>
+                                                {% endif %}
+                                            </div>
+
+                                            <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
+                                                <button type="submit"
+                                                    class="btn btn-primary login_btn">Save Details</button>
+													
+                                            </div>
+                                        </form>
+                                    </div>
+                                   
+                                </div>
+                                
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const districtDropdown = document.getElementById("city_dname");
+            const talukaDropdown = document.getElementById("city_tname");
+            const villageDropdown = document.getElementById("city_vname");
+    
+            // Set old values
+            const oldTaluka = "{{ i_data.0.4 }}";  // Preselected Taluka
+            const oldVillage = "{{ i_data.0.5 }}"; // Preselected Village
+    
+            function fetchTaluka(district, selectedTaluka = "") {
+                if (!district) {
+                    talukaDropdown.innerHTML = '<option value="">--Select--</option>';
+                    villageDropdown.innerHTML = '<option value="">--Select--</option>';
+                    return;
+                }
+    
+                fetch(`get_taluka/${district}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        talukaDropdown.innerHTML = '<option value="">--Select--</option>';
+                        data.forEach(item => {
+                            const selected = item.name === selectedTaluka ? "selected" : "";
+                            talukaDropdown.innerHTML += `<option value="${item.name}" ${selected}>${item.name}</option>`;
+                        });
+    
+                        // Fetch village only if a Taluka was previously selected
+                        if (selectedTaluka) {
+                            fetchVillage(selectedTaluka, oldVillage);
+                        }
+                    });
+            }
+    
+            function fetchVillage(taluka, selectedVillage = "") {
+                if (!taluka) {
+                    villageDropdown.innerHTML = '<option value="">--Select--</option>';
+                    return;
+                }
+    
+                fetch(`get_village/${taluka}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        villageDropdown.innerHTML = '<option value="">--Select--</option>';
+                        data.forEach(item => {
+                            const selected = item.name === selectedVillage ? "selected" : "";
+                            villageDropdown.innerHTML += `<option value="${item.name}" ${selected}>${item.name}</option>`;
+                        });
+                    });
+            }
+    
+            // On District change, fetch Talukas or reset
+            districtDropdown.addEventListener("change", function () {
+                const district = this.value;
+                fetchTaluka(district);
+            });
+    
+            // On Taluka change, fetch Villages
+            talukaDropdown.addEventListener("change", function () {
+                fetchVillage(this.value);
+            });
+    
+            // On page load, prefill Taluka and Village
+            if (districtDropdown.value) {
+                fetchTaluka(districtDropdown.value, oldTaluka);
+            }
+        });
+
+        function validateAndPreview(input, imgId, linkId) {
+    if (input.files && input.files[0]) {
+        var file = input.files[0];
+        var reader = new FileReader();
+        var fileType = file.type;
+        var pdfLink = document.getElementById(linkId);
+        var imagePreview = document.getElementById(imgId);
+
+        if (fileType.includes("image")) {
+            // If image, show preview and hide PDF link
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = "block";
+                pdfLink.style.display = "none";
+            };
+            reader.readAsDataURL(file);
+        } 
+        else if (fileType.includes("pdf")) {
+            // If PDF, show link and hide image preview
+            var pdfURL = URL.createObjectURL(file);
+            pdfLink.style.display = "block";
+            pdfLink.href = pdfURL;
+            pdfLink.textContent = "View File";
+            pdfLink.target = "_blank";
+            imagePreview.style.display = "none"; // Hide image preview
+        } 
+        else {
+            alert("Only JPG, JPEG, PNG, or PDF files are allowed.");
+            input.value = ""; // Reset file input
+        }
+    }
+}
+
+
+    </script>
+	
+
+
+	<!--end-->
+
+<!-- jp footer Wrapper End -->
+{% include 'ufooter.html' %}
+<!--main js file start-->
+{% include 'uscript.html' %}
+<!--main js file end-->
+</body>
+
+</html>

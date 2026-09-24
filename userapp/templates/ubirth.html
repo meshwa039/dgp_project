@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+{% load static %}
+{% include 'uhead.html' %}
+
+{% if request.session.userid == None %}
+<script type="text/javascript">window.location.href="usignin";</script>
+{% endif %}
+
+<body>
+	<!-- preloader Start -->
+    
+	<!-- Top Scroll End -->
+	<!-- Top Header Wrapper Start -->
+	{% include 'uheader.html' %}
+	<!-- Top Header Wrapper End -->
+	<!-- Header Wrapper Start -->
+	
+	<!-- Header Wrapper End -->
+	<!-- map Wrapper Start -->
+	{% include 'ubanner.html' %}
+	<!-- map Wrapper End -->
+	<!--start-->
+
+
+    <div class="register_section">
+        <!-- register_form_wrapper -->
+        <div class="register_tab_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div role="tabpanel">
+
+                            <!-- Nav tabs -->
+                            <ul id="tabOne" class="nav register-tabs">
+                                <li class="active"><a href="#contentOne-1" data-toggle="tab">Add Birth Certificate<br>
+                                       </a>
+                                </li>
+                                
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active register_left_form" id="contentOne-1">
+                                    
+                                    <div class="row">
+                                        <form method="POST" enctype="multipart/form-data" data-toggle="validator">
+											{% csrf_token %}
+                                            <!--Form Group-->
+
+                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+												
+												<label for="">District</label>
+                                                <select name="city_dname" id="city_dname" required>
+                                                    <option value="">--Select--</option>
+                                                    {% for vdata in d_data %}
+                                                    <option value="{{ vdata.0 }}">{{ vdata.0 }}</option>
+                                                    {% endfor %}
+                                                </select>
+													
+											</div>
+
+                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+												
+												<label for="">Taluka</label>
+                                                <select name="city_tname" id="city_tname" required>
+                                                    <option value="">--Select--</option>
+                                                </select>
+													
+											</div>
+
+                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+												
+												<label for="">Village</label>
+                                                <select name="city_vname" id="city_vname" required>
+                                                    <option value="">--Select--</option>
+                                                </select>
+													
+											</div>
+
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Name Of Applicant</label>
+												<input type="text" class="form-control"  pattern="[A-Za-z\s]+" title="Please Enter Valid Name."  required name="b_name"  id="email2" placeholder="Enter Name*">
+													
+											</div>
+                                            <!--Form Group-->
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<label for="">Gender</label>
+                                                <select name="b_gender" >
+                                                  
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+												
+											</div>
+                                            <!--Form Group-->
+											<div class="form-group col-md-4 col-sm-4 col-xs-4">
+												<label for="">Date Of Birth</label>
+												<input type="date" required class="form-control" name="b_dob"  required="" id="password2" max="{{today}}" placeholder="Date Of Birth *">
+												</div>
+                                            <!--Form Group-->
+
+											<div class="form-group col-md-4 col-sm-4 col-xs-4">
+												<label for="">Birth Time</label>
+												<input type="time" id="myInput" required class="form-control" name="b_time"  required=""  placeholder="Birth Time *">
+											</div>
+                                            <div class="form-group col-md-4 col-sm-4 col-xs-4" style="padding-bottom: 15px;">
+												<label for="">Date Of Registration</label>
+												<input type="date" class="form-control" name="b_regdate"  required id="password2" max="{{today}}" placeholder="Date Of Registration *">
+                                                
+											</div>
+                                            
+                                             
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Name Of Father</label>
+												<input type="text" class="form-control" name="b_father" pattern="[A-Za-z\s]+" title="Please Enter Valid Name."  required id="email2" placeholder="Name Of Father*">
+													
+											</div>
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Name Of Mother</label>
+												<input type="text" class="form-control" name="b_mother" pattern="[A-Za-z\s]+" title="Please Enter Valid Name."  required id="email2" placeholder="Name Of Mother*">
+													
+											</div>
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Address of parents at the time of Birth of child.</label>
+												<textarea class="form-control" required name="b_address"  id="email2" placeholder="Address*"></textarea>
+													
+											</div>
+
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Permanent Address Of Parents</label>
+												<textarea class="form-control" name="b_peraddress"  required id="email2" placeholder="Permanent  Address *"></textarea>
+													
+											</div>
+											<div class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
+                                                <label for="idProof">ID Proof</label>
+                                                <input type="file" id="idProof" name="b_idproof" class="form-control" required 
+                                                       accept="image/png, image/jpg, image/jpeg, application/pdf"
+                                                       onchange="validateAndPreview(this, 'idProofPreview', 'idProofLink');" />
+                                                <div class="img-upload">
+                                                    <img id="idProofPreview" src="{% static 'images/content/base.png' %}" alt="your image" style="max-width: 180px; height: 180px;" />
+                                                    <a id="idProofLink" href="#" target="_blank" style="display: none;">View File</a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
+                                                <label for="hospitalLetter">Hospital Letter</label>
+                                                <input type="file" id="hospitalLetter" name="b_hospitalletter" class="form-control" required 
+                                                       accept="image/png, image/jpg, image/jpeg, application/pdf"
+                                                       onchange="validateAndPreview(this, 'hospitalLetterPreview', 'hospitalLetterLink');" />
+                                                <div class="img-upload">
+                                                    <img id="hospitalLetterPreview" src="{% static 'images/content/base.png' %}" alt="your image" style="max-width: 180px; height: 180px;" />
+                                                    <a id="hospitalLetterLink" href="#" target="_blank" style="display: none;">View File</a>
+                                                </div>
+                                            </div>
+
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Place Of Birth</label>
+												<input type="text" class="form-control" name="b_place"  required id="email2" placeholder="Place Of Birth*">
+													
+											</div>
+
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+												
+												<label for="">Relation Of Applicant</label>
+                                                <select name="b_relation_name">
+                                                  
+                                                    <option value="Self">Self</option>
+                                                    <option value="Father">Father</option>
+                                                    <option value="Mother">Mother</option>
+                                                    <option value="Brother">Brother</option>
+                                                    <option value="Wife">Wife</option>
+                                                    <option value="Daughter">Daughter</option>
+                                                    <option value="Other ">Other</option>
+                                                </select>
+													
+											</div>
+
+                                            
+                                          
+                                            <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
+                                                <button type="submit"
+                                                    class="btn btn-primary login_btn">Save Details</button>
+													
+                                            </div>
+                                        </form>
+                                    </div>
+                                   
+                                </div>
+                                
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('city_dname').addEventListener('change', function () {
+            const district = this.value;
+    
+            fetch(`get_taluka/${district}/`)
+                .then(response => response.json())
+                .then(data => {
+                    const talukaDropdown = document.getElementById('city_tname');
+                    talukaDropdown.innerHTML = '<option value="">--Select--</option>';
+                    data.forEach(item => {
+                        talukaDropdown.innerHTML += `<option value="${item.name}">${item.name}</option>`;
+                    });
+    
+                    // Clear villages
+                    document.getElementById('city_vname').innerHTML = '<option value="">--Select--</option>';
+                });
+        });
+    
+        document.getElementById('city_tname').addEventListener('change', function () {
+            const taluka = this.value;
+    
+            fetch(`get_village/${taluka}/`)
+                .then(response => response.json())
+                .then(data => {
+                    const villageDropdown = document.getElementById('city_vname');
+                    villageDropdown.innerHTML = '<option value="">--Select--</option>';
+                    data.forEach(item => {
+                        villageDropdown.innerHTML += `<option value="${item.name}">${item.name}</option>`;
+                    });
+                });
+        });
+
+
+        function validateAndPreview(input, imgId, pdfLinkId = null) {
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const reader = new FileReader();
+        const imgPreview = document.getElementById(imgId);
+        const pdfLink = pdfLinkId ? document.getElementById(pdfLinkId) : null;
+        const fileType = file.type;
+
+        // Validation
+        const allowedImageTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        const allowedPdfTypes = ['application/pdf'];
+
+        if (!allowedImageTypes.includes(fileType) && !allowedPdfTypes.includes(fileType)) {
+            alert('Only JPG, JPEG, PNG images, and PDF files are allowed.');
+            input.value = ''; // Reset input
+            return;
+        }
+
+        reader.onload = function (e) {
+            if (fileType === 'application/pdf') {
+                if (pdfLink) {
+                    const pdfBlob = new Blob([file], { type: 'application/pdf' });
+                    const pdfURL = URL.createObjectURL(pdfBlob);
+
+                    pdfLink.style.display = "block";
+                    pdfLink.href = pdfURL;
+                    pdfLink.textContent = "View File";
+                    pdfLink.target = "_blank"; // Open in new tab
+                }
+                imgPreview.style.display = "none"; // Hide image preview
+            } else {
+                imgPreview.style.display = "block";
+                imgPreview.src = e.target.result;
+                if (pdfLink) pdfLink.style.display = "none"; // Hide PDF link
+            }
+        };
+        
+        reader.readAsDataURL(file);
+    }
+}
+    </script>
+    
+	
+	
+
+
+	<!--end-->
+
+<!-- jp footer Wrapper End -->
+{% include 'ufooter.html' %}
+<!--main js file start-->
+{% include 'uscript.html' %}
+<!--main js file end-->
+</body>
+
+</html>
